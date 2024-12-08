@@ -1,0 +1,23 @@
+{
+  "name": "stockflow",
+  "version": "1.0.0",
+  "description": "Real-time stock monitoring application built with the MERN stack",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon backend/server.js "
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.8.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
