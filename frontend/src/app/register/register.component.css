@@ -1,0 +1,31 @@
+.register-form {
+    background: white;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin: 0 auto;
+    margin-top: 5rem;
+}
+
+.register-form .form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.register-form .form-group input[type="text"],
+.register-form .form-group input[type="email"],
+.register-form .form-group input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+.register-form .buttons button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    color: white;
+    background-color: #4b5efc;
+    font-weight: bold;
+}

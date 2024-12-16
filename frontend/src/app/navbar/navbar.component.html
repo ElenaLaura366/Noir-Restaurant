@@ -1,0 +1,21 @@
+<nav class="navbar">
+    <div class="navbar-logo">
+        <a routerLink="/home">EasyDine</a>
+    </div>
+    <ul class="navbar-links">
+        <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+        <li><a routerLink="/menu" routerLinkActive="active">Menu</a></li>
+        <li><a routerLink="/reserve" routerLinkActive="active">Reserve Table</a></li>
+        <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+    </ul>
+    <div class="navbar-actions">
+        <ng-container *ngIf="!isAuthenticated">
+            <a routerLink="/signin" class="signin">Sign in</a>
+            <a routerLink="/register" class="register">Register</a>
+        </ng-container>
+        <ng-container *ngIf="isAuthenticated">
+            <a routerLink="/profile" class="profile">Profile</a>
+            <button class="logout" (click)="onLogout()">Logout</button>
+        </ng-container>
+    </div>
+</nav>
