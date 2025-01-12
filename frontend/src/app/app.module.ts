@@ -12,6 +12,8 @@ import { RegisterComponent } from './register/register.component';
 import { SigninComponent } from './signin/signin.component';
 import { ContactComponent } from './contact/contact.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     SigninComponent,
     ContactComponent,
     NavbarComponent,
+    HomeComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,

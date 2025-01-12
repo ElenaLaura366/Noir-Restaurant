@@ -1,21 +1,33 @@
-<nav class="navbar">
-    <div class="navbar-logo">
-        <a routerLink="/home">EasyDine</a>
+<nav class="sticky top-0 left-0 w-full z-50 flex justify-between items-center p-4 bg-zinc-950 text-white">
+    <!-- Logo -->
+    <div class="text-lg font-bold">
+        <a routerLink="/home" class="text-white no-underline">Noir</a>
     </div>
-    <ul class="navbar-links">
-        <li><a routerLink="/about" routerLinkActive="active">About</a></li>
-        <li><a routerLink="/menu" routerLinkActive="active">Menu</a></li>
-        <li><a routerLink="/reserve" routerLinkActive="active">Reserve Table</a></li>
-        <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+  
+    <!-- Links -->
+    <ul class="flex gap-6 list-none mb-0">
+        <li>
+            <a routerLink="/about" routerLinkActive="active" class="text-white text-sm transition-colors hover:text-blue-500">About</a>
+        </li>
+        <li>
+            <a routerLink="/menu" routerLinkActive="active" class="text-white text-sm transition-colors hover:text-blue-500">Menu</a>
+        </li>
+        <li>
+            <a routerLink="/reserve" routerLinkActive="active" class="text-white text-sm transition-colors hover:text-blue-500">Reserve Table</a>
+        </li>
+        <li>
+            <a routerLink="/contact" routerLinkActive="active" class="text-white text-sm transition-colors hover:text-blue-500">Contact</a>
+        </li>
     </ul>
-    <div class="navbar-actions">
-        <ng-container *ngIf="!isAuthenticated">
-            <a routerLink="/signin" class="signin">Sign in</a>
-            <a routerLink="/register" class="register">Register</a>
+  
+    <!-- Actions -->
+    <div class="flex items-center gap-4 text-sm">
+        <ng-container *ngIf="!isAuthenticated; else authActions">
+            <a routerLink="/signin" class="text-blue-500 no-underline">Sign in</a>
+            <a routerLink="/register" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 no-underline">Register</a>
         </ng-container>
-        <ng-container *ngIf="isAuthenticated">
-            <a routerLink="/profile" class="profile">Profile</a>
-            <button class="logout" (click)="onLogout()">Logout</button>
-        </ng-container>
+        <ng-template #authActions>
+            <a routerLink="/profile" class="text-blue-500 no-underline px-4 py-2">Profile</a>
+        </ng-template>
     </div>
 </nav>
