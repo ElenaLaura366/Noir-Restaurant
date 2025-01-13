@@ -1,40 +1,51 @@
-<div class="flex flex-col lg:flex-row items-center justify-center p-4 lg:p-20 bg-black min-h-screen">
-    <div class="w-full lg:w-1/2 mb-8 lg:mb-0 lg:pr-8">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d89306.4730677749!2d25.489254613168164!3d45.61411474872295!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b3453f2e31743d%3A0xbd28dc9500b77ee9!2sNoir%20Poiana%20Brasov!5e0!3m2!1sro!2sro!4v1736680939001!5m2!1sro!2sro" 
-            width="100%" 
-            height="450" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
+<div class="bg-zinc-950 text-gray-100">
+    <div class="grid grid-cols-2 h-screen">
+        <div class="flex flex-col justify-center items-center">
+            <h1 class="text-5xl font-lora mb-3">Find Us</h1>
+            <h3 class="text-xl font-bold uppercase">where</h3>
+            <p class="my-3">51 R. Quincampoix, 75004 Paris, France</p>
+            <div>
+                <a href="#" class="uppercase py-2 px-4 border mr-3 bg-gray-100 text-zinc-950">view map</a>
+                <a href="#" class="uppercase py-2 px-4 border">Book a table</a>
+            </div>
+            <h3 class="text-xl font-bold uppercase mt-4">when</h3>
+            <p class="mt-3">Monday – Friday: 12:00 pm – 11:00 pm</p>
+            <p class="mt-2">Saturday/Sunday 9am – 11pm</p>
+        </div>
+        <div class=""> 
+            <img src="jason-leung-poI7DelFiVA-unsplash.jpg" alt="Home" class="w-full h-full object-cover">
+        </div>
     </div>
-    
-    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="w-full lg:w-1/2 flex flex-col">
-        <div class="mb-4">
-            <label for="name" class="block text-white mb-2">Nume</label>
-            <input id="name" type="text" formControlName="name" class="w-full p-2.5 text-sm" />
-            <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched" class="text-red-500 text-xs mt-1">
-            Numele este obligatoriu.
-            </div>
+    <div class="grid grid-cols-2">
+        <div class="max-h-[40rem]">
+            <img src="pexels-vanmalidate-784633.jpg" alt="Home" class="w-full h-full object-cover">
         </div>
-    
-        <div class="mb-4">
-            <label for="email" class="block text-white mb-2">Email</label>
-            <input id="email" type="email" formControlName="email" class="w-full p-2.5 text-sm" />
-            <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="text-red-500 text-xs mt-1">
-            Adresa de email este invalidă.
-            </div>
+        <div class="flex flex-col justify-center items-center p-12 text-center">
+            <h1 class="text-3xl font-lora">Contact us</h1>
+            <p>To get in touch fill out the contact form below or call us at +3385402852.</p>
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="w-full flex flex-col mt-3">
+                <div class="mb-4">
+                    <input id="name" type="text" formControlName="name" class="w-full p-2.5 text-sm bg-transparent border" placeholder="Name"/>
+                    <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched" class="text-red-500 text-xs mt-1">
+                        The name is required.
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <input id="email" type="email" formControlName="email" class="w-full p-2.5 text-sm bg-transparent border" placeholder="Email"/>
+                    <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="text-red-500 text-xs mt-1">
+                        Invalid email.
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <textarea id="message" rows="5" formControlName="message" class="w-full p-2.5 text-sm bg-transparent border" placeholder="Message"></textarea>
+                    <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched" class="text-red-500 text-xs mt-1">
+                        The message is required.
+                    </div>
+                </div>
+            
+                <button type="submit" class="px-4 py-2.5 text-sm border text-white transition-colors max-w-[25%]" [disabled]="contactForm.invalid">Submit</button>
+            </form>
         </div>
-    
-        <div class="mb-4">
-            <label for="message" class="block text-white mb-2">Mesaj</label>
-            <textarea id="message" rows="5" formControlName="message" class="w-full p-2.5 text-sm"></textarea>
-            <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched" class="text-red-500 text-xs mt-1">
-            Mesajul este obligatoriu.
-            </div>
-        </div>
-    
-        <button type="submit" class="px-4 py-2.5 text-sm border text-white transition-colors" [disabled]="contactForm.invalid">Trimite</button>
-    </form>
-</div>  
+    </div>
+    <app-footer></app-footer>
+</div>
