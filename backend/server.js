@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import { connectdb } from './config/db.js';
 import cors from 'cors';
 import router from './routes/user.route.js';
+import reservationRouter from './routes/reservation.route.js';
 
 dotenv.config();
 
@@ -15,6 +16,8 @@ app.use(cors());
 const PORT = process.env.PORT || 5000;
 
 app.use("/", router);
+
+app.use("/api", reservationRouter);
 
 app.listen(PORT, () => {
     connectdb();

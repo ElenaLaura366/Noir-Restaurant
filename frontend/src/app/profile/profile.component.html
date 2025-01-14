@@ -1,34 +1,27 @@
-<div class="bg-zinc-950 text-gray-100">
+<div class="bg-zinc-950 text-gray-100 h-screen">
     <div class="grid grid-cols-3 p-36">
-        <div class="col-span-1">
-            <h1 class="text-4xl font-lora mb-4">Hello username</h1>
-            <a href="#" class="border py-2 px-3">Logout</a>
-        </div>
-        <div class="col-span-2">
-            <h1 class="text-4xl font-bold font-lora uppercase">My reservations</h1>
-            <ul>
-                <li>
-                    <h2 class="text-2xl font-bold mt-3">Reservation 1</h2>
-                    <p>Table for 2</p>
-                    <p>Time: 12:00 pm</p>
-                    <p class="mb-3">Date: 12/12/2022</p>
-                    <a href="#" class="border p-2 hover:bg-yellow-500 hover:border-yellow-500 hover:text-zinc-950">Cancel</a>
-                </li>
-                <li>
-                    <h2 class="text-2xl font-bold mt-3">Reservation 2</h2>
-                    <p>Table for 4</p>
-                    <p>Time: 1:00 pm</p>
-                    <p class="mb-3">Date: 12/12/2022</p>
-                    <a href="#" class="border p-2 hover:bg-yellow-500 hover:border-yellow-500 hover:text-zinc-950">Cancel</a>
-                </li>
-                <li>
-                    <h2 class="text-2xl font-bold mt-3">Reservation 3</h2>
-                    <p>Table for 6</p>
-                    <p>Time: 2:00 pm</p>
-                    <p class="mb-3">Date: 12/12/2022</p>
-                    <a href="#" class="border p-2 hover:bg-yellow-500 hover:border-yellow-500 hover:text-zinc-950">Cancel</a>
-                </li>
-            </ul>
-        </div>
+      <div class="col-span-1">
+        <h1 class="text-4xl font-lora mb-4">Hello username</h1>
+        <a href="#" class="border py-2 px-3">Logout</a>
+      </div>
+      <div class="col-span-2">
+        <h1 class="text-4xl font-bold font-lora uppercase">My Reservations</h1>
+  
+        <ul *ngIf="reservations.length > 0">
+          <li *ngFor="let reservation of reservations">
+            <h2 class="text-2xl font-bold mt-3">{{ reservation.table }}-seat reservation</h2>
+            <p>Time: {{ reservation.time }}</p>
+            <p>Date: {{ reservation.date | date }}</p>
+            <button
+              (click)="cancelReservation(reservation._id)"
+              class="border p-2 hover:bg-yellow-500 hover:border-yellow-500 hover:text-zinc-950"
+            >
+              Cancel
+            </button>
+          </li>
+        </ul>
+  
+        <p *ngIf="reservations.length === 0">You have no reservations.</p>
+      </div>
     </div>
-</div>
+</div>  

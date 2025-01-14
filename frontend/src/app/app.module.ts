@@ -6,6 +6,7 @@ import { JsonPipe } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { CookieService } from 'ngx-cookie-service';
+import { DatePipe } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
@@ -15,6 +16,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { FooterComponent } from './footer/footer.component';
+import { MenuComponent } from './menu/menu.component';
+import { ReserveComponent } from './reserve/reserve.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,9 @@ import { FooterComponent } from './footer/footer.component';
     HomeComponent,
     CarouselComponent,
     FooterComponent,
+    MenuComponent,
+    ReserveComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +42,7 @@ import { FooterComponent } from './footer/footer.component';
     NgIf,
     ReactiveFormsModule,
   ],
-  providers: [CookieService],
+  providers: [CookieService, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
