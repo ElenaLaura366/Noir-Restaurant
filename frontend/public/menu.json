@@ -1,0 +1,278 @@
+[
+  {
+    "category": "Small Bites",
+    "description": "Order for the table and spread the love.",
+    "items": [
+      {
+        "name": "Green papaya salad",
+        "description": "shrimp, chili & lime",
+        "price": 12
+      },
+      {
+        "name": "Black pepper calamari",
+        "description": "Galangal dressing, roasted rice, thai basil",
+        "price": 14
+      },
+      {
+        "name": "Tumeric spiced cauliflower",
+        "description": "Sesame tofu dressing, furikake",
+        "price": 11
+      },
+      {
+        "name": "Kingfish sashimi",
+        "description": "Green nam jim, coconut & thai basil",
+        "price": 15
+      },
+      {
+        "name": "Caramelised betel leaf",
+        "description": "Pineapple, Chili",
+        "price": 12
+      },
+      {
+        "name": "Pacific oysters (price per piece)",
+        "description": "Ponzu, sriracha",
+        "price": 5
+      },
+      {
+        "name": "Thai chicken lettuce cups",
+        "description": "Chilis, thai basil, crispy garlic, fried egg",
+        "price": 13
+      },
+      {
+        "name": "Shishito Peppers",
+        "description": "Yuzu, sesame",
+        "price": 9
+      },
+      {
+        "name": "Edamame",
+        "description": "maldon sea salt",
+        "price": 8
+      }
+    ]
+  },
+  {
+    "category": "The Land",
+    "items": [
+      {
+        "name": "Ribeye Bites Roasted",
+        "description": "Shishito Peppers, Jalapeño Crème",
+        "price": 23
+      },
+      {
+        "name": "Buddha's Feast",
+        "description": "Five-spice tofu, savory sauce, green beans, shiitakes, broccoli, carrots",
+        "price": 12
+      },
+      {
+        "name": "Stir fried Eggplant",
+        "description": "Chinese eggplant, sweet chili soy glaze, green onion, garlic",
+        "price": 12
+      },
+      {
+        "name": "Fried Chicken bun",
+        "description": "Gochujang, pickled radis",
+        "price": 11
+      },
+      {
+        "name": "Crispy Pork Bun",
+        "description": "House made kimchi, sriracha mayo",
+        "price": 12
+      },
+      {
+        "name": "Wagyu ribeye teppanyaki",
+        "description": "Snow peas, shimeji mushrooms",
+        "price": 28
+      },
+      {
+        "name": "Grilled Pork Chop",
+        "description": "Vietnamese slaw, cashew & shrimp sambal",
+        "price": 28
+      }
+    ]
+  },
+  {
+    "category": "The Sea",
+    "items": [
+      {
+        "name": "Blackened Fish Sandwich",
+        "description": "Crunchy cabbage, wild baby arugula, tomato, house made tartar sauce, on a brioche bun",
+        "price": 9
+      },
+      {
+        "name": "Lobster Tacos",
+        "description": "Mango Salsa, Yuzu Guacamole",
+        "price": 18
+      },
+      {
+        "name": "Hanoi Style Whole Market Fish",
+        "description": "Whole fish, sweet chilli sauce, Vietnamese herbs and spices, roasted cashews",
+        "price": 22
+      },
+      {
+        "name": "Blackened Snapper",
+        "description": "Steamed bok choy, ginger kaffir lime vinaigrette",
+        "price": 24
+      },
+      {
+        "name": "Honey Glazed Salmon",
+        "description": "lotus root, green beans, baby sweet peppers",
+        "price": 23
+      },
+      {
+        "name": "Charred Seabass",
+        "description": "Orange glazed chicory, saffron rice, pepper sauce",
+        "price": 17
+      }
+    ]
+  },
+  {
+    "category": "The Sky",
+    "items": [
+      {
+        "name": "Sesame Chicken",
+        "description": "Chinese eggplant, sweet chili soy glaze, green onion, pineapple, ginger",
+        "price": 18
+      },
+      {
+        "name": "Crispy Orange Chicken",
+        "description": "Steamed bok choy",
+        "price": 24
+      },
+      {
+        "name": "Chicken Wings",
+        "description": "Thai basil, chili, peanuts, green papaya, cilantro",
+        "price": 22
+      },
+      {
+        "name": "Black Pepper Chili Chicken",
+        "description": "Pepper, onion, bamboo shoot, celery",
+        "price": 14
+      },
+      {
+        "name": "Peking Duck",
+        "description": "For Two",
+        "price": 36
+      },
+      {
+        "name": "Chili & pepper spiced duck",
+        "description": "Green beans, shiitakes, broccoli, carrots, plum & ginger dressing",
+        "price": 26
+      },
+      {
+        "name": "Free-Range Chicken Breast",
+        "description": "Ichimi glaze, shishito potato mash, green onion, garlic",
+        "price": 16
+      },
+      {
+        "name": "Drunken Chicken",
+        "description": "Shao xing wine, shiitake mushrooms, broccoli, carrots, green onion dressing",
+        "price": 22
+      }
+    ]
+  },
+  {
+    "category": "Sides",
+    "items": [
+      {
+        "name": "Asian green stir fry",
+        "description": "Pea shoots, chinese broccoli leaves",
+        "price": 7
+      },
+      {
+        "name": "Chinese broccoli",
+        "description": "Black bean sauce",
+        "price": 7
+      },
+      {
+        "name": "Spicy eggplant",
+        "description": "Togarashi yogurt, curry, soybean chili",
+        "price": 7
+      },
+      {
+        "name": "Coconut rice",
+        "description": "",
+        "price": 5
+      },
+      {
+        "name": "Steamed fragrant rice",
+        "description": "",
+        "price": 4
+      }
+    ]
+  },
+  {
+    "category": "RedWines",
+    "items": [
+      {
+        "name": "2012 Red Hills Vineyard. Derenoncourt. Napa Valley",
+        "description": "9",
+        "price": 64
+      },
+      {
+        "name": "Merlot St. Francis, Sonoma County, California, 2016",
+        "description": "14",
+        "price": 63
+      },
+      {
+        "name": "Antinori Tignanello",
+        "description": "7",
+        "price": 49
+      },
+      {
+        "name": "La Rioja Alta Gran Reserva 904 Tinto 2011",
+        "description": "4",
+        "price": 43
+      },
+      {
+        "name": "Bodegas Vega Sicilia Unico Tinto 2010",
+        "description": "8",
+        "price": 54
+      },
+      {
+        "name": "Chateau La Mission Haut Brion 2015",
+        "description": "9",
+        "price": 65
+      }
+    ]
+  },
+  {
+    "category": "WhiteWines",
+    "items": [
+      {
+        "name": "2020 Bourgogne. Domaine Bernard Moreau",
+        "description": "7",
+        "price": 56
+      },
+      {
+        "name": "Pinot Grigio Bollini, Trentino, Italy, 2018",
+        "description": "7",
+        "price": 54
+      },
+      {
+        "name": "Chardonnay Laguna, California 2017",
+        "description": "7",
+        "price": 52
+      },
+      {
+        "name": "Alpha Omega Chardonnay 2017",
+        "description": "5",
+        "price": 42
+      },
+      {
+        "name": "Ponzi Vineyards Pinot Gris 2018",
+        "description": "6",
+        "price": 47
+      },
+      {
+        "name": "Kim Crawford Sauvignon Blank",
+        "description": "6",
+        "price": 42
+      },
+      {
+        "name": "Domaine du Salvard Cheverny Blank 2018",
+        "description": "6",
+        "price": 45
+      }
+    ]
+  }
+]

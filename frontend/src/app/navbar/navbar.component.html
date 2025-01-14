@@ -23,11 +23,11 @@
     <!-- Actions -->
     <div class="flex items-center gap-4 text-sm">
         <ng-container *ngIf="!isAuthenticated; else authActions">
-            <a routerLink="/signin" class="text-blue-500 no-underline">Sign in</a>
-            <a routerLink="/register" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 no-underline">Register</a>
+            <a routerLink="/signin" class="text-yellow-500 no-underline">Sign in</a>
+            <a routerLink="/register" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-500 no-underline">Register</a>
         </ng-container>
         <ng-template #authActions>
-            <a routerLink="/profile" class="text-blue-500 no-underline px-4 py-2">Profile</a>
+            <a routerLink="/profile" class="text-yellow-500 no-underline px-4 py-2">Profile</a>
         </ng-template>
     </div>
 </nav>

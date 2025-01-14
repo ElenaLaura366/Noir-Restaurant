@@ -14,6 +14,7 @@ import { ContactComponent } from './contact/contact.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CarouselComponent } from './carousel/carousel.component';
     NavbarComponent,
     HomeComponent,
     CarouselComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
