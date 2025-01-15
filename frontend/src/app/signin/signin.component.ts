@@ -27,10 +27,9 @@ export class SigninComponent {
     this.userService.login(userData).subscribe({
       next: (res) => {
         console.log('Login Successful:', res);
-
-        const expirationDate = this.rememberMe ? 7 : undefined;
-        this.cookieService.set('sessionToken', res.token, expirationDate, '/');
-
+  
+        this.userService.saveToken(res.token, this.rememberMe);
+  
         this.router.navigate(['/home']);
       },
       error: (err) => console.error('Login Error:', err)

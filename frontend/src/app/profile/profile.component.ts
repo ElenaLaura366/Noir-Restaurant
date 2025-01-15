@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { DatePipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +18,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
@@ -27,30 +29,24 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadReservations();
-  }
-
-  loadReservations() {
-    this.userService.getReservations().subscribe(
-      (response) => {
+    if (!this.userService.isLoggedIn()) {
+      alert('You must log in to access this page.');
+      this.router.navigate(['/signin']);
+      return;
+    }
+  
+    this.userService.getReservations().subscribe({
+      next: (response) => {
         this.reservations = response.data;
       },
-      (error) => {
-        console.error('Error fetching reservations:', error);
-      }
-    );
-  }
-
-  cancelReservation(id: string) {
-    this.userService.cancelReservation(id).subscribe(
-      (response) => {
-        console.log('Reservation cancelled:', response);
-        this.loadReservations();
+      error: (err) => {
+        console.error('Error fetching reservations', err);
+        if (err.status === 401) {
+          alert('Session expired. Please log in again.');
+          this.logout();
+        }
       },
-      (error) => {
-        console.error('Error canceling reservation:', error);
-      }
-    );
+    });
   }
 
   onSubmit() {
@@ -61,5 +57,10 @@ export class ProfileComponent implements OnInit {
     } else {
       console.log('Formular invalid');
     }
+  }
+
+  logout() {
+    this.userService.logout();
+    this.router.navigate(['/']);
   }
 }

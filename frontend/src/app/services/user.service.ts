@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
@@ -8,6 +8,9 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class UserService {
   private baseURL = 'http://localhost:5000/api';
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
+
+  isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
@@ -19,14 +22,10 @@ export class UserService {
     return this.http.post(`${this.baseURL}/users/login`, userData);
   }
 
-  getUsers(token: string): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get(`${this.baseURL}/users`, { headers });
-  }
-
   saveToken(token: string, rememberMe: boolean): void {
     const expirationDays = rememberMe ? 7 : undefined;
     this.cookieService.set('sessionToken', token, expirationDays, '/');
+    this.isAuthenticatedSubject.next(true);
   }
 
   getToken(): string | null {
@@ -34,30 +33,16 @@ export class UserService {
   }
 
   isLoggedIn(): boolean {
-    return this.cookieService.check('sessionToken');
-  }
+    return this.cookieService && this.cookieService.check('sessionToken');
+  }  
 
   logout(): void {
     this.cookieService.delete('sessionToken', '/');
+    this.isAuthenticatedSubject.next(false);
   }
-
-  // Reservation Methods
 
   getReservations(): Observable<any> {
-    const token = this.getToken();
-    if (!token) {
-      throw new Error('No token found!');
-    }
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get(`${this.baseURL}/reservations`, { headers });
-  }
-
-  cancelReservation(reservationId: string): Observable<any> {
-    const token = this.getToken();
-    if (!token) {
-      throw new Error('No token found!');
-    }
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.delete(`${this.baseURL}/reservations/${reservationId}`, { headers });
+    return this.http.get(`${this.baseURL}/reservations`);
   }
 }
+

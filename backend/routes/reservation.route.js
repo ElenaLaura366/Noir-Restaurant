@@ -1,10 +1,18 @@
 import express from "express";
-import { getUserReservations, cancelReservation } from "../controllers/reservation.controller.js";
-import { protect } from "../middleware/auth.js";
+import protect from "../middleware/auth.middleware.js";
+import { getReservations, createReservation, updateReservation, deleteReservation } from "../controllers/reservation.controller.js";
 
-const router = express.Router();
+const routerReservation = express.Router();
 
-router.get("/api/reservations", protect, getUserReservations);
-router.delete("/api/reservations/:id", protect, cancelReservation);
+routerReservation.get("/api/reservations", protect, getReservations);
+routerReservation.post("/api/reservations", protect, createReservation);
+routerReservation.put("/api/reservations/:id", protect, updateReservation);
+routerReservation.delete("/api/reservations/:id", protect, deleteReservation);
 
-export default router;
+/*
+routerReservation.get("/api/reservations", getReservations);
+routerReservation.post("/api/reservations", createReservation);
+routerReservation.put("/api/reservations/:id", updateReservation);
+routerReservation.delete("/api/reservations/:id", deleteReservation);
+*/
+export default routerReservation ;

@@ -1,28 +1,40 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const reservationSchema = new mongoose.Schema({
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+    name: {
+        type: String,
         required: true,
+        unique: true,
     },
-    table: {
-        type: Number,
-        required: true
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    date: {
+        type: String,
+        required: true,
     },
     time: {
         type: String,
-        required: true
+        required: true,
     },
-    date: {
-        type: Date,
-        required: true
-    },
-    status: {
+    people: {
         type: String,
-        default: 'Active'
-    }
-}, { timestamps: true });
+        required: true,
+    },
+    message: {
+        type: String,
+        required: true,
+    },
+    userId: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User', 
+        required: true 
+    },
+}, {
+    timestamps: true,
+});
 
 const Reservation = mongoose.model('Reservation', reservationSchema);
 
