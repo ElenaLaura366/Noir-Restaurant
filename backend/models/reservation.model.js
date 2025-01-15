@@ -9,7 +9,6 @@ const reservationSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true,
     },
     date: {
         type: String,
@@ -20,17 +19,12 @@ const reservationSchema = new mongoose.Schema({
         required: true,
     },
     people: {
-        type: String,
+        type: mongoose.Schema.Types.Mixed,
         required: true,
     },
     message: {
         type: String,
         required: true,
-    },
-    userId: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User', 
-        required: true 
     },
 }, {
     timestamps: true,

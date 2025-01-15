@@ -21,18 +21,26 @@ export class ReserveComponent {
       email: ['', [Validators.required, Validators.email]],
       date: ['', Validators.required],
       time: ['', Validators.required],
-      table: ['', Validators.required],
+      people: ['', Validators.required],
       message: ['', Validators.required],
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.contactForm.valid) {
-      console.log('Formular trimis:', this.contactForm.value);
-      alert('Rezervare trimisă cu succes!');
-      this.contactForm.reset();
+      const formData = this.contactForm.value;
+      this.userService.createReservation(formData).subscribe({
+        next: (response) => {
+          alert('Rezervare trimisă cu succes!');
+          this.contactForm.reset();
+        },
+        error: (err) => {
+          console.error('Error creating reservation:', err);
+          alert('A apărut o problemă la trimiterea rezervării.');
+        }
+      });
     } else {
       console.log('Formular invalid');
     }
-  }
+  }   
 }

@@ -1,20 +1,23 @@
-<div class="login-form">
-    <form (ngSubmit)="onLogin()">
-        <div class="form-group">
-            <label for="email">Email ID:</label>
-            <input type="email" id="email" [(ngModel)]="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" [(ngModel)]="password" name="password" required>
-        </div>
-        <div class="buttons">
-            <button type="submit" class="sign-in">SIGN IN</button>
-            <button type="button" class="register-now" (click)="onRegister()">REGISTER NOW</button>
-        </div>
-        <div class="checkbox">
-            <input type="checkbox" id="remember" [(ngModel)]="rememberMe" name="rememberMe">
-            <label for="remember">Remember me</label>
-        </div>
-    </form>
+<div class="bg-zinc-950 text-gray-100 h-screen">
+    <div class="flex flex-col justify-center items-center p-40 text-center">
+        <h1 class="font-lora text-4xl">Please LogIn</h1>
+        <form (ngSubmit)="onLogin()" class="flex flex-col items-start p-8">
+            <div class="flex flex-col items-start">
+                <label class="mb-2" for="email">Email ID:</label>
+                <input class="p-2 bg-transparent border rounded-md" type="email" id="email" [(ngModel)]="email" name="email" required>
+            </div>
+            <div class="flex flex-col items-start">
+                <label class="mb-2" for="password">Password:</label>
+                <input class="p-2 bg-transparent border rounded-md" type="password" id="password" [(ngModel)]="password" name="password" required>
+            </div>
+            <div class="flex flex-col w-full mt-2">
+                <button type="submit" class="border bg-gray-100 text-zinc-950 p-2 hover:bg-zinc-950 hover:text-gray-100">SIGN IN</button>
+                <button type="button" class="hover:bg-gray-100 hover:text-zinc-950 mt-2 border p-2" (click)="onRegister()">REGISTER NOW</button>
+            </div>
+            <div class="mt-2 flex">
+                <input type="checkbox" id="remember" [(ngModel)]="rememberMe" name="rememberMe">
+                <label for="remember">Remember me</label>
+            </div>
+        </form>
+    </div>
 </div>

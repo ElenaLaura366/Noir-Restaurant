@@ -1,19 +1,22 @@
-<div class="register-form">
-    <form (submit)="onRegister()">
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" [(ngModel)]="name" name="name" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" [(ngModel)]="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" [(ngModel)]="password" name="password" required>
-        </div>
-        <div class="buttons">
-            <button type="submit" class="register">REGISTER</button>
-        </div>
-    </form>
+<div class="bg-zinc-950 text-gray-100 h-screen">
+    <div class="flex flex-col justify-center items-center p-40 text-center">
+        <h1 class="font-lora text-4xl">Please Register</h1>
+        <form (submit)="onRegister()" class="flex flex-col items-start p-8">
+            <div class="flex flex-col items-start">
+                <label for="name" class="mb-2">Name:</label>
+                <input class="p-2 bg-transparent border rounded-md" type="text" id="name" [(ngModel)]="name" name="name" required>
+            </div>
+            <div class="flex flex-col items-start">
+                <label for="email" class="mb-2">Email:</label>
+                <input class="p-2 bg-transparent border rounded-md" type="email" id="email" [(ngModel)]="email" name="email" required>
+            </div>
+            <div class="flex flex-col items-start">
+                <label for="password" class="mb-2">Password:</label>
+                <input class="p-2 bg-transparent border rounded-md" type="password" id="password" [(ngModel)]="password" name="password" required>
+            </div>
+            <div class="flex flex-col w-full mt-2">
+                <button type="submit" class="hover:bg-gray-100 hover:text-zinc-950 mt-2 border p-2">REGISTER</button>
+            </div>
+        </form>
+    </div>
 </div>

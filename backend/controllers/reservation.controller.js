@@ -8,25 +8,28 @@ export const getReservations = async (req, res) => {
         const reservations = await Reservation.find({ userId: req.user.id });
         res.status(200).json({ success: true, data: reservations });
     } catch (error) {
-        onsole.log("User", req.user.id);
+        console.log("User", req.user.id);
         res.status(404).json({ success: false, message: "Reservations not found" });
     }
 };
 
 export const createReservation = async (req, res) => {
     const { name, email, date, time, people, message } = req.body;
+    console.log(email);
+    console.log("Request", req.body);
     if (!name || !email || !date || !time || !people || !message) {
         return res.status(400).json({ success: false, message: "Please fill all fields" });
     }
+
     const reservation = new Reservation({
         name,
         email,
         date,
         time,
         people,
-        message,
-        userId: req.user.id,
+        message
     });
+
     try {
         await reservation.save();
         res.status(201).json({ success: true, data: reservation });

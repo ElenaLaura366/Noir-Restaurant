@@ -44,5 +44,10 @@ export class UserService {
   getReservations(): Observable<any> {
     return this.http.get(`${this.baseURL}/reservations`);
   }
+
+  createReservation(reservationData: any): Observable<any> {
+    console.log(reservationData);
+    return this.http.post(`${this.baseURL}/reservations`, reservationData);
+  }
 }
 
