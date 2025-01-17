@@ -6,9 +6,14 @@ const router = express.Router();
 
 router.post("/api/users/register", registerUser);
 router.post("/api/users/login", loginUser);
-
+/*
 router.get("/api/users", protect, getUsers);
 router.put("/api/users/:id", protect, updateUser);
 router.delete("/api/users/:id", protect, deleteUser);
+*/
+
+router.get("/api/users", getUsers);
+router.put("/api/users/:id", updateUser);
+router.delete("/api/users/:id", deleteUser);
 
 export default router;

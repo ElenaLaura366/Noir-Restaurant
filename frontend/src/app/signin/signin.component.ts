@@ -27,14 +27,12 @@ export class SigninComponent {
     this.userService.login(userData).subscribe({
       next: (res) => {
         console.log('Login Successful:', res);
-  
-        this.userService.saveToken(res.token, this.rememberMe);
-  
+        this.userService.saveToken(res.token);
         this.router.navigate(['/home']);
       },
-      error: (err) => console.error('Login Error:', err)
+      error: (err) => console.error('Login Error:', err),
     });
-  }
+  }  
 
   onRegister(): void {
     this.router.navigate(['/register']);

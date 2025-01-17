@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     if (!this.userService.isLoggedIn()) {
-      alert('You must log in to access this page.');
+      console.log('You must log in to access this page.');
       this.router.navigate(['/signin']);
       return;
     }

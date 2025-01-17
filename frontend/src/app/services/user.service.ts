@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
   private baseURL = 'http://localhost:5000/api';
@@ -12,7 +11,7 @@ export class UserService {
 
   isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
-  constructor(private http: HttpClient, private cookieService: CookieService) {}
+  constructor(private http: HttpClient) {}
 
   register(userData: any): Observable<any> {
     return this.http.post(`${this.baseURL}/users/register`, userData);
@@ -22,23 +21,32 @@ export class UserService {
     return this.http.post(`${this.baseURL}/users/login`, userData);
   }
 
-  saveToken(token: string, rememberMe: boolean): void {
-    const expirationDays = rememberMe ? 7 : undefined;
-    this.cookieService.set('sessionToken', token, expirationDays, '/');
-    this.isAuthenticatedSubject.next(true);
+  saveToken(token: string): void {
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      sessionStorage.setItem('sessionToken', token);
+      this.isAuthenticatedSubject.next(true);
+    }
   }
 
   getToken(): string | null {
-    return this.cookieService.get('sessionToken');
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      return sessionStorage.getItem('sessionToken');
+    }
+    return null;
   }
 
   isLoggedIn(): boolean {
-    return this.cookieService && this.cookieService.check('sessionToken');
-  }  
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      return !!sessionStorage.getItem('sessionToken');
+    }
+    return false;
+  }
 
   logout(): void {
-    this.cookieService.delete('sessionToken', '/');
-    this.isAuthenticatedSubject.next(false);
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      sessionStorage.removeItem('sessionToken');
+      this.isAuthenticatedSubject.next(false);
+    }
   }
 
   getReservations(): Observable<any> {
@@ -46,8 +54,10 @@ export class UserService {
   }
 
   createReservation(reservationData: any): Observable<any> {
-    console.log(reservationData);
     return this.http.post(`${this.baseURL}/reservations`, reservationData);
   }
-}
 
+  cancelReservation(reservationId: string): Observable<any> {
+    return this.http.delete(`${this.baseURL}/reservations/${reservationId}`);
+  }
+}

@@ -4,8 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { JsonPipe } from '@angular/common';
 import { NgIf } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms'; 
-import { CookieService } from 'ngx-cookie-service';
+import { ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
 import { AppComponent } from './app.component';
@@ -42,7 +41,7 @@ import { ProfileComponent } from './profile/profile.component';
     NgIf,
     ReactiveFormsModule,
   ],
-  providers: [CookieService, DatePipe],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

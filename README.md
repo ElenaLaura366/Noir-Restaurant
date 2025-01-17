@@ -21,7 +21,7 @@ Welcome to the **Noir Restaurant**! This application is a sleek and modern websi
 
 ### Backend
 - **Server**: Node.js with Express
-- **Database**: MongoDB (or your preferred database)
+- **Database**: MongoDB
 
 ---
 
@@ -43,6 +43,11 @@ Ensure you have the following installed on your system:
    ```
 
 2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Change directory and run:
    ```bash
    npm install
    ```
