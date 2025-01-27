@@ -1,7 +1,7 @@
 <div class="bg-zinc-950 text-gray-100 h-screen">
     <div class="grid grid-cols-3 p-36">
       <div class="col-span-1">
-        <h1 class="text-4xl font-lora mb-4">Hello username</h1>
+        <h1 class="text-4xl font-lora mb-4">Hello</h1>
         <button (click)="logout()" class="border py-2 px-3">Logout</button>
       </div>
       <div class="col-span-2">
@@ -14,8 +14,9 @@
             <p>Date: {{ reservation.date | date }}</p>
           </li>
         </ul>
-  
+        
         <p *ngIf="reservations.length === 0">You have no reservations.</p>
+        
       </div>
     </div>
 </div>  

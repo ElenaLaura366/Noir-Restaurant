@@ -4,6 +4,7 @@ import { UserService } from '../services/user.service';
 import { DatePipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { Reservation } from '../models/reservation.model';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 
 export class ProfileComponent implements OnInit {
   contactForm: FormGroup;
-  reservations: any[] = [];
+  reservations: Reservation[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -30,14 +31,21 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     if (!this.userService.isLoggedIn()) {
-      console.log('You must log in to access this page.');
       this.router.navigate(['/signin']);
       return;
     }
   
-    this.userService.getReservations().subscribe({
+    const userEmail = this.userService.getUserEmail();
+  
+    if (!userEmail) {
+      console.error('No email found in token. Redirecting to signin.');
+      this.router.navigate(['/signin']);
+      return;
+    }
+  
+    this.userService.getReservations(userEmail).subscribe({
       next: (response) => {
-        this.reservations = response;
+        this.reservations = response.data;
       },
       error: (err) => {
         console.error('Error fetching reservations', err);
@@ -47,7 +55,7 @@ export class ProfileComponent implements OnInit {
         }
       },
     });
-  }
+  }    
 
   onSubmit() {
     if (this.contactForm.valid) {

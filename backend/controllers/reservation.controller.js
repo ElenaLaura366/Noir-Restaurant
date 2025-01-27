@@ -2,13 +2,19 @@ import Reservation from "../models/reservation.model.js";
 import mongoose from "mongoose";
 
 export const getReservations = async (req, res) => {
-    try {
-        const reservations = await Reservation.find({});
-        res.status(200).json({ success: true, data: reservations });
-    } catch (error) {
-        res.status(404).json({ success: false, message: "Reservations not found" });
+    const { email } = req.query;
+  
+    if (!email) {
+      return res.status(400).json({ success: false, message: 'Email is required' });
     }
-};
+  
+    try {
+      const reservations = await Reservation.find({ email });
+      res.status(200).json({ success: true, data: reservations });
+    } catch (error) {
+      res.status(500).json({ success: false, message: 'Server error' });
+    }
+};  
 
 export const createReservation = async (req, res) => {
     const { name, email, date, time, people, message } = req.body;

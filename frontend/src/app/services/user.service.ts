@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { Reservation } from '../models/reservation.model';
+import { Observable, BehaviorSubject, tap } from 'rxjs';
+import { Reservation, ReservationResponse } from '../models/reservation.model';
 import { User } from '../models/user.model';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -20,8 +21,12 @@ export class UserService {
   }
 
   login(user: Pick<User, 'email' | 'password'>): Observable<{ token: string; user: User }> {
-    return this.http.post<{ token: string; user: User }>(`${this.baseURL}/users/login`, user);
-  }
+    return this.http.post<{ token: string; user: User }>(`${this.baseURL}/users/login`, user).pipe(
+      tap((response: { token: string; user: User }) => {
+        sessionStorage.setItem('sessionToken', response.token);
+      })
+    );
+  }   
 
   saveToken(token: string): void {
     if (typeof window !== 'undefined' && window.sessionStorage) {
@@ -32,10 +37,15 @@ export class UserService {
 
   getToken(): string | null {
     if (typeof window !== 'undefined' && window.sessionStorage) {
-      return sessionStorage.getItem('sessionToken');
+      const token = sessionStorage.getItem('sessionToken');
+      if (token && token.split('.').length === 3) {
+        return token;
+      }
+      console.error('Invalid token format');
+      return null;
     }
     return null;
-  }
+  }    
 
   isLoggedIn(): boolean {
     return !!this.getToken();
@@ -48,9 +58,34 @@ export class UserService {
     }
   } 
 
-  getReservations(): Observable<Reservation[]> {
-    return this.http.get<Reservation[]>(`${this.baseURL}/reservations`);
+  getUserEmail(): string | null {
+    const token = this.getToken();
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      return decodedToken.email || null;
+    }
+    return null;
   }
+
+  getReservations(email?: string): Observable<ReservationResponse> {
+    const token = sessionStorage.getItem('sessionToken');
+  
+    return this.http.get<ReservationResponse>(`${this.baseURL}/reservations?email=${email}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+  }
+   
+  
+  getLoggedInUserEmail(): string | null {
+    const token = this.getToken();
+    if (token) {
+      const decodedToken = JSON.parse(atob(token.split('.')[1]));
+      return decodedToken.email;
+    }
+    return null;
+  }  
 
   createReservation(reservation: Reservation): Observable<Reservation> {
     return this.http.post<Reservation>(`${this.baseURL}/reservations`, reservation);

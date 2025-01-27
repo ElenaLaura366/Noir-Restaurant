@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import jwt from 'jsonwebtoken'; 
 
 export const getUsers = async (req, res) => {
     try {
@@ -101,7 +102,11 @@ export const loginUser = async (req, res) => {
         if (!isMatch) {
             return res.status(401).json({ success: false, message: "Invalid credentials" });
         }
-        res.status(200).json({ success: true, user });
+
+        const token = jwt.sign({ userId: user._id, email: user.email }, process.env.JWT_SECRET, {
+            expiresIn: '1h'
+        });
+        res.status(200).json({ success: true, token, user });
     } catch (error) {
         console.error("Error logging in:", error.message);
         res.status(500).json({ success: false, message: "Server error" });

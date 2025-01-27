@@ -6,3 +6,8 @@ export interface Reservation {
     people: number;
     message: string;
 }  
+
+export interface ReservationResponse {
+    success: boolean;
+    data: Reservation[];
+}
