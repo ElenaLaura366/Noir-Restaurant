@@ -1,10 +1,7 @@
 <nav class="sticky top-0 left-0 w-full z-50 flex justify-between items-center p-4 bg-black text-gray-100">
-    <!-- Logo -->
     <div class="text-lg font-bold">
         <a routerLink="/home" class="text-white no-underline">Noir</a>
     </div>
-  
-    <!-- Links -->
     <ul class="flex gap-6 list-none mb-0">
         <li>
             <a routerLink="/about" routerLinkActive="active" class="text-white text-sm transition-colors hover:text-blue-500">About</a>
@@ -12,15 +9,13 @@
         <li>
             <a routerLink="/menu" routerLinkActive="active" class="text-white text-sm transition-colors hover:text-blue-500">Menu</a>
         </li>
-        <li>
+        <li *ngIf="isAuthenticated">
             <a routerLink="/reserve" routerLinkActive="active" class="text-white text-sm transition-colors hover:text-blue-500">Reserve Table</a>
         </li>
         <li>
             <a routerLink="/contact" routerLinkActive="active" class="text-white text-sm transition-colors hover:text-blue-500">Contact</a>
         </li>
     </ul>
-  
-    <!-- Actions -->
     <div class="flex items-center gap-4 text-sm">
         <ng-container *ngIf="!isAuthenticated; else authActions">
             <a routerLink="/signin" class="text-yellow-500 no-underline">Sign in</a>

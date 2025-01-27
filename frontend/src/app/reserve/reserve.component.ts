@@ -1,46 +1,76 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { FooterComponent } from '../footer/footer.component';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common';
 import { UserService } from '../services/user.service';
+import { Reservation } from '../models/reservation.model';
 
 @Component({
   selector: 'app-reserve',
-  imports: [ReactiveFormsModule, CommonModule, FooterComponent],
+  imports: [CommonModule, FooterComponent, FormsModule],
   templateUrl: './reserve.component.html',
-  styleUrl: './reserve.component.css'
+  styleUrl: './reserve.component.css',
 })
-
 export class ReserveComponent {
-  contactForm: FormGroup;
+  reservation: Reservation = {
+    name: '',
+    email: '',
+    date: '',
+    time: '',
+    people: 1,
+    message: '',
+  };
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
-    this.contactForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      date: ['', Validators.required],
-      time: ['', Validators.required],
-      people: ['', Validators.required],
-      message: ['', Validators.required],
-    });
-  }
+  dateError: string | null = null;
+
+  constructor(private userService: UserService) {}
 
   onSubmit(): void {
-    if (this.contactForm.valid) {
-      const formData = this.contactForm.value;
-      this.userService.createReservation(formData).subscribe({
-        next: (response) => {
-          alert('Rezervare trimisă cu succes!');
-          this.contactForm.reset();
+    this.validateDate();
+    if (!this.dateError && this.isReservationValid()) {
+      this.userService.createReservation(this.reservation).subscribe({
+        next: () => {
+          alert('Reservation submitted successfully!');
+          this.resetReservation();
         },
         error: (err) => {
           console.error('Error creating reservation:', err);
-          alert('A apărut o problemă la trimiterea rezervării.');
-        }
+          alert('An error occurred while submitting the reservation.');
+        },
       });
-    } else {
-      console.log('Formular invalid');
     }
-  }   
+  }
+
+  private validateDate(): void {
+    const selectedDate = new Date(this.reservation.date);
+    const currentDate = new Date();
+
+    if (selectedDate.toString() === 'Invalid Date') {
+      this.dateError = 'The date is invalid.';
+    } else if (selectedDate < currentDate) {
+      this.dateError = 'The date must be in the future.';
+    } else {
+      this.dateError = null;
+    }
+  }
+
+  private isReservationValid(): boolean {
+    if (!this.reservation.name || !this.reservation.email || !this.reservation.date || !this.reservation.time || this.reservation.people < 1 || !this.reservation.message) {
+      alert('Please fill in all required fields.');
+      return false;
+    }
+    return true;
+  }
+
+  private resetReservation(): void {
+    this.reservation = {
+      name: '',
+      email: '',
+      date: '',
+      time: '',
+      people: 1,
+      message: '',
+    };
+    this.dateError = null;
+  }
 }

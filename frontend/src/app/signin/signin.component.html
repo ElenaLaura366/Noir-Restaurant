@@ -4,11 +4,11 @@
         <form (ngSubmit)="onLogin()" class="flex flex-col items-start p-8">
             <div class="flex flex-col items-start">
                 <label class="mb-2" for="email">Email ID:</label>
-                <input class="p-2 bg-transparent border rounded-md" type="email" id="email" [(ngModel)]="email" name="email" required>
+                <input class="p-2 bg-transparent border rounded-md" type="email" id="email" [(ngModel)]="user.email" name="email" required>
             </div>
             <div class="flex flex-col items-start">
                 <label class="mb-2" for="password">Password:</label>
-                <input class="p-2 bg-transparent border rounded-md" type="password" id="password" [(ngModel)]="password" name="password" required>
+                <input class="p-2 bg-transparent border rounded-md" type="password" id="password" [(ngModel)]="user.password" name="password" required>
             </div>
             <div class="flex flex-col w-full mt-2">
                 <button type="submit" class="border bg-gray-100 text-zinc-950 p-2 hover:bg-zinc-950 hover:text-gray-100">SIGN IN</button>

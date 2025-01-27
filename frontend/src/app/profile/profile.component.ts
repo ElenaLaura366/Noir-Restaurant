@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
   
     this.userService.getReservations().subscribe({
       next: (response) => {
-        this.reservations = response.data;
+        this.reservations = response;
       },
       error: (err) => {
         console.error('Error fetching reservations', err);

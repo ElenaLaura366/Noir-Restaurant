@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { FormsModule } from '@angular/forms'; 
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-signin',
@@ -12,8 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 
 export class SigninComponent {
-  email: string = '';
-  password: string = '';
+  user: Pick<User, 'email' | 'password'> = { email: '', password: '' };
   rememberMe: boolean = false;
 
   constructor(
@@ -23,8 +23,7 @@ export class SigninComponent {
   ) {}
 
   onLogin(): void {
-    const userData = { email: this.email, password: this.password };
-    this.userService.login(userData).subscribe({
+    this.userService.login(this.user).subscribe({
       next: (res) => {
         console.log('Login Successful:', res);
         this.userService.saveToken(res.token);
@@ -32,7 +31,7 @@ export class SigninComponent {
       },
       error: (err) => console.error('Login Error:', err),
     });
-  }  
+  } 
 
   onRegister(): void {
     this.router.navigate(['/register']);
